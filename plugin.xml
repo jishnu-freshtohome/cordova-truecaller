@@ -1,0 +1,26 @@
+<?xml version='1.0' encoding='utf-8'?>
+<plugin id="cordova-plugin-truecaller" version="1.0.0"
+    xmlns="http://apache.org/cordova/ns/plugins/1.0"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <name>cordova-truecaller</name>
+    <preference name="PARTNER_KEY"/>
+    <js-module name="cordova-truecaller" src="www/cordova-truecaller.js">
+        <clobbers target="cordova.plugins.cordova-truecaller" />
+    </js-module>
+    <platform name="android">
+        <hook type="after_prepare" src="scripts/enableAndroidX.js" />
+        <config-file parent="/*" target="res/xml/config.xml">
+            <feature name="cordova-truecaller">
+                <param name="android-package" value="cordova.plugin.truecaller.CordovaTruecaller" />
+            </feature>
+        </config-file>
+        <framework src="com.truecaller.android.sdk:truecaller-sdk:2.6.0" />
+        <config-file parent="/*" target="AndroidManifest.xml">
+            <meta-data android:name="com.truecaller.android.sdk.PartnerKey" android:value="@string/partnerKey"/>
+        </config-file>
+        <config-file parent="/*" target="res/values/strings.xml">
+            <string name="partnerKey">$PARTNER_KEY</string>
+        </config-file>
+        <source-file src="src/android/cordova-truecaller.java" target-dir="src/cordova/plugin/truecaller" />
+    </platform>
+</plugin>
