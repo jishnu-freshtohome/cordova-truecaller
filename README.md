@@ -44,14 +44,6 @@ Can be used to find if the user has truecaller application installed on their de
 ### truecaller.verify(options, successCallback, errorCallback)
 Displays the truecaller dialog to authenticate the user.
 
-**Kind**: static method of <code>[camera](#module_camera)</code>  
-
-| Param | Type | Description |
-| --- | --- | --- |
-| successCallback | <code>[onSuccess](#module_camera.onSuccess)</code> |  |
-| errorCallback | <code>[onError](#module_camera.onError)</code> |  |
-| options | <code>[CameraOptions](#module_camera.CameraOptions)</code> | CameraOptions |
-
 **Example**  
 ```js
 var options = {
@@ -86,26 +78,26 @@ cordova.plugins.truecaller.check(
 <a name="module_camera.cleanup"></a>
 
 ### options.consentMode : <code>string</code>
-**Kind**: consentMode property of <code>[Options](#module_Options)</code>
+**Kind**: consentMode property of <code>[Options](#)</code>
 **Default**: Bottomsheet
 **Alowed Values**
 
 | Value | Description |
-| --- | --- | --- | --- |
+| --- | --- |
 | Bottomsheet | Displays a bottomsheet |
 | Fullscreen | Displays a fullscreen modal |
 | Popup | Displays a popup |
 
 ### options.buttonColor : <code>hex color code</code>
-**Kind**: buttonColor property of <code>[Options](#module_Options)</code>
+**Kind**: buttonColor property of <code>[Options](#)</code>
 **Default**: #2979FF
 
 ### options.buttonTextColor : <code>hex color code</code>
-**Kind**: buttonTextColor property of <code>[Options](#module_Options)</code>
+**Kind**: buttonTextColor property of <code>[Options](#)</code>
 **Default**: #FFFFFF
 
 ### options.loginTextPrefix : <code>string</code>
-**Kind**: loginTextPrefix property of <code>[Options](#module_Options)</code>
+**Kind**: loginTextPrefix property of <code>[Options](#)</code>
 **Default**: To continue
 **Description**: Will display the same value.
 **Alowed Values**
@@ -127,7 +119,7 @@ cordova.plugins.truecaller.check(
 | To subscribe and get updates |
 
 ### options.loginTextSuffix : <code>string</code>
-**Kind**: loginTextSuffix property of <code>[Options](#module_Options)</code>
+**Kind**: loginTextSuffix property of <code>[Options](#)</code>
 **Default**: To continue
 **Description**: Will display the same value.
 **Alowed Values**
@@ -142,7 +134,7 @@ cordova.plugins.truecaller.check(
 | Please sign in |
 
 ### options.ctaTextPrefix : <code>string</code>
-**Kind**: ctaTextPrefix property of <code>[Options](#module_Options)</code>
+**Kind**: ctaTextPrefix property of <code>[Options](#)</code>
 **Default**: Proceed with
 **Description**: Will display the same value.
 **Alowed Values**
@@ -155,7 +147,7 @@ cordova.plugins.truecaller.check(
 
 
 ### options.buttonShape : <code>string</code>
-**Kind**: buttonShape property of <code>[Options](#module_Options)</code>
+**Kind**: buttonShape property of <code>[Options](#)</code>
 **Default**: Rounded
 **Description**: The shape of button.
 **Alowed Values**
@@ -167,7 +159,7 @@ cordova.plugins.truecaller.check(
 
 
 ### options.footerType : <code>string</code>
-**Kind**: footerType property of <code>[Options](#module_Options)</code>
+**Kind**: footerType property of <code>[Options](#)</code>
 **Default**: Later
 **Description**: Will display the same value in footer.
 **Alowed Values**
@@ -180,7 +172,7 @@ cordova.plugins.truecaller.check(
 
 
 ### options.consentTitle : <code>string</code>
-**Kind**: consentTitle property of <code>[Options](#module_Options)</code>
+**Kind**: consentTitle property of <code>[Options](#)</code>
 **Default**: Verify
 **Description**: Will display the same value.
 **Alowed Values**
@@ -195,7 +187,7 @@ cordova.plugins.truecaller.check(
 | Get started |
 
 ### options.sdkOptions : <code>string</code>
-**Kind**: sdkOptions property of <code>[Options](#module_Options)</code>
+**Kind**: sdkOptions property of <code>[Options](#)</code>
 **Default**: With otp
 **Alowed Values**
 
