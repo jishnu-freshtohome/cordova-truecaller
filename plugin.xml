@@ -5,7 +5,7 @@
     <name>cordova-truecaller</name>
     <preference name="PARTNER_KEY"/>
     <js-module name="cordova-truecaller" src="www/cordova-truecaller.js">
-        <clobbers target="cordova.plugins.cordova-truecaller" />
+        <clobbers target="cordova.plugins.truecaller" />
     </js-module>
     <platform name="android">
         <hook type="after_prepare" src="scripts/enableAndroidX.js" />
@@ -15,12 +15,12 @@
             </feature>
         </config-file>
         <framework src="com.truecaller.android.sdk:truecaller-sdk:2.6.0" />
-        <config-file parent="/*" target="AndroidManifest.xml">
+        <config-file parent="/manifest/application" target="AndroidManifest.xml">
             <meta-data android:name="com.truecaller.android.sdk.PartnerKey" android:value="@string/partnerKey"/>
         </config-file>
         <config-file parent="/*" target="res/values/strings.xml">
             <string name="partnerKey">$PARTNER_KEY</string>
         </config-file>
-        <source-file src="src/android/cordova-truecaller.java" target-dir="src/cordova/plugin/truecaller" />
+        <source-file src="src/android/CordovaTruecaller.java" target-dir="src/cordova/plugin/truecaller/CordovaTruecaller" />
     </platform>
 </plugin>
