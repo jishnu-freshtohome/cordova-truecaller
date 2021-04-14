@@ -1,5 +1,5 @@
 const fs = require('fs');
-const PLUGIN_NAME = 'newPlugin';
+const PLUGIN_NAME = 'cordova-truecaller';
 
 const str = 'android.useAndroidX';
 const gradelPropertiesPath = './platforms/android/gradle.properties';
