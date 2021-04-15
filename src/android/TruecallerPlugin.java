@@ -1,4 +1,4 @@
-package cordova.plugin.truecaller;
+package org.apache.cordova.truecaller;
 
 import org.apache.cordova.CordovaPlugin;
 import org.apache.cordova.CallbackContext;
@@ -34,7 +34,7 @@ import com.truecaller.android.sdk.clients.VerificationDataBundle;
 /**
  * This class echoes a string called from JavaScript.
  */
-public class CordovaTruecaller extends CordovaPlugin {
+public class TruecallerPlugin extends CordovaPlugin {
 
     private TrueProfile profile;
     private CallbackContext callbackContext;
@@ -44,32 +44,32 @@ public class CordovaTruecaller extends CordovaPlugin {
         @Override
         public void onSuccessProfileShared(@NonNull TrueProfile trueProfile) {
             try {
-                JSONObject response = CordovaTruecaller.this.getProfile(trueProfile);
-                CordovaTruecaller.this.sendResponse("success", response);
+                JSONObject response = TruecallerPlugin.this.getProfile(trueProfile);
+                TruecallerPlugin.this.sendResponse("success", response);
             } catch (JSONException e) {
                 e.printStackTrace();
-                CordovaTruecaller.this.sendResponse("error", e.getMessage());
+                TruecallerPlugin.this.sendResponse("error", e.getMessage());
             }
         }
 
         @SuppressLint("LongLogTag")
         @Override
         public void onFailureProfileShared(@NonNull TrueError trueError) {
-            Toast.makeText(CordovaTruecaller.this.cordova.getActivity().getApplicationContext(),
+            Toast.makeText(TruecallerPlugin.this.cordova.getActivity().getApplicationContext(),
                     "onFailureProfileShared: " + trueError.getErrorType(),
                     Toast.LENGTH_SHORT).show();
             Log.e("onFailureProfileShared: " , String.valueOf(trueError.getErrorType()));
-            CordovaTruecaller.this.sendResponse("error", String.valueOf(trueError.getErrorType()));
+            TruecallerPlugin.this.sendResponse("error", String.valueOf(trueError.getErrorType()));
         }
 
         @SuppressLint("LongLogTag")
         @Override
         public void onVerificationRequired(TrueError trueError) {
-            Toast.makeText(CordovaTruecaller.this.cordova.getActivity().getApplicationContext(),
+            Toast.makeText(TruecallerPlugin.this.cordova.getActivity().getApplicationContext(),
                     "Verification Required",
                     Toast.LENGTH_SHORT).show();
             Log.e("onFailureProfileShared: " , String.valueOf(trueError.getErrorType()));
-            CordovaTruecaller.this.sendResponse("error", String.valueOf(trueError.getErrorType()));
+            TruecallerPlugin.this.sendResponse("error", String.valueOf(trueError.getErrorType()));
         }
     }
     
@@ -78,7 +78,7 @@ public class CordovaTruecaller extends CordovaPlugin {
         if (action.equals("checkTruecaller")) {
             this.callbackContext = callbackContext;
             try {
-                CordovaTruecaller.this.cordova.getActivity().getApplicationContext().getPackageManager()
+                TruecallerPlugin.this.cordova.getActivity().getApplicationContext().getPackageManager()
                         .getPackageInfo("com.truecaller", PackageManager.GET_ACTIVITIES);
                 this.sendResponse("success", "OK");
             } catch (PackageManager.NameNotFoundException e) {
@@ -154,7 +154,7 @@ public class CordovaTruecaller extends CordovaPlugin {
             TruecallerSDK.init(truescope);
         } catch (JSONException e) {
             e.printStackTrace();
-            CordovaTruecaller.this.sendResponse("error", e.getMessage());
+            TruecallerPlugin.this.sendResponse("error", e.getMessage());
         }
 
     }

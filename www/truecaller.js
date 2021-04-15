@@ -86,13 +86,13 @@ function generate(options) {
 
 exports.verify = function (options, success, error) {
     options = generate(options);
-    exec(success, error, 'CordovaTruecaller', 'truecallerInit', [options]);
+    exec(success, error, 'TruecallerPlugin', 'truecallerInit', [options]);
 };
 
 exports.check = function(success, error) {
-    exec(success, error, 'CordovaTruecaller', 'checkTruecaller', []);
+    exec(success, error, 'TruecallerPlugin', 'checkTruecaller', []);
 };
 
 exports.clearSdk = function() {
-    exec(null, null, 'CordovaTruecaller', 'clearSDk', []);
+    exec(null, null, 'TruecallerPlugin', 'clearSDk', []);
 };
