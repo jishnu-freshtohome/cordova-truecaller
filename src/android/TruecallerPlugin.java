@@ -87,9 +87,12 @@ public class TruecallerPlugin extends CordovaPlugin {
             return true;
         }
         if (action.equals("truecallerInit")) {
+
             this.callbackContext = callbackContext;
-            this.cordova.setActivityResultCallback(this);
+//            this.cordova.setActivityResultCallback(this);
+            this.sendResponse("success", "calling");
             JSONObject options = args.getJSONObject(0);
+            TruecallerPlugin.this.sendResponse("success", "created options");
             this.initTruecaller(options);
             return true;
         }
@@ -102,6 +105,7 @@ public class TruecallerPlugin extends CordovaPlugin {
 
     private void initTruecaller(JSONObject options) {
             this.createTruescope(options);
+            this.sendResponse("success", "in init truecaller");
             try {
                 if(TruecallerSDK.getInstance().isUsable()){
                     TruecallerSDK.getInstance().getUserProfile((FragmentActivity) this.cordova.getActivity());
@@ -130,6 +134,7 @@ public class TruecallerPlugin extends CordovaPlugin {
     }
 
     private void createTruescope(JSONObject options) {
+        this.sendResponse("success", "inside createTruescope");
         try {
             if (TruecallerSDK.getInstance().isUsable()) return ;
         }catch (Exception ignored){
@@ -137,6 +142,7 @@ public class TruecallerPlugin extends CordovaPlugin {
         }
         Context context = this.cordova.getContext();
         try {
+            this.sendResponse("success", "creating scope");
             TruecallerSdkScope truescope = new TruecallerSdkScope.Builder(context, new sdkCallback())
                     .consentMode(options.getInt("consentMode"))
                     .buttonColor(Color.parseColor(options.getString("buttonColor")))

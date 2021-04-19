@@ -82,6 +82,8 @@ function generate(options) {
     op['footerType'] = footerType[options.footerType];
     op['consentTitleOption'] = consentTitle[options.consentTitle];
     op['sdkOptions'] = sdkOption[options.sdkOptions];
+
+    return op;
 }
 
 exports.verify = function (options, success, error) {
