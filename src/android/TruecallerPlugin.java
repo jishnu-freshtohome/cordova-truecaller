@@ -1,5 +1,6 @@
 package org.apache.cordova.truecaller;
 
+import org.apache.cordova.CordovaInterface;
 import org.apache.cordova.CordovaPlugin;
 import org.apache.cordova.CallbackContext;
 
@@ -9,28 +10,26 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.content.Intent;
-import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
-import android.os.Build;
 import android.widget.Toast;
 import android.graphics.Color;
 import android.util.Log;
 import android.content.Context;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.annotation.RequiresApi;
+import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
 
 import com.truecaller.android.sdk.ITrueCallback;
 import com.truecaller.android.sdk.SdkThemeOptions;
 import com.truecaller.android.sdk.TrueError;
-import com.truecaller.android.sdk.TrueException;
 import com.truecaller.android.sdk.TrueProfile;
 import com.truecaller.android.sdk.TruecallerSDK;
 import com.truecaller.android.sdk.TruecallerSdkScope;
-import com.truecaller.android.sdk.clients.VerificationCallback;
-import com.truecaller.android.sdk.clients.VerificationDataBundle;
+
+
 /**
  * This class echoes a string called from JavaScript.
  */
@@ -55,9 +54,9 @@ public class TruecallerPlugin extends CordovaPlugin {
         @SuppressLint("LongLogTag")
         @Override
         public void onFailureProfileShared(@NonNull TrueError trueError) {
-            Toast.makeText(TruecallerPlugin.this.cordova.getActivity().getApplicationContext(),
-                    "onFailureProfileShared: " + trueError.getErrorType(),
-                    Toast.LENGTH_SHORT).show();
+            // Toast.makeText(TruecallerPlugin.this.cordova.getActivity().getApplicationContext(),
+            //         "onFailureProfileShared: " + trueError.getErrorType(),
+            //         Toast.LENGTH_SHORT).show();
             Log.e("onFailureProfileShared: " , String.valueOf(trueError.getErrorType()));
             TruecallerPlugin.this.sendResponse("error", String.valueOf(trueError.getErrorType()));
         }
@@ -65,9 +64,9 @@ public class TruecallerPlugin extends CordovaPlugin {
         @SuppressLint("LongLogTag")
         @Override
         public void onVerificationRequired(TrueError trueError) {
-            Toast.makeText(TruecallerPlugin.this.cordova.getActivity().getApplicationContext(),
-                    "Verification Required",
-                    Toast.LENGTH_SHORT).show();
+            // Toast.makeText(TruecallerPlugin.this.cordova.getActivity().getApplicationContext(),
+            //         "Verification Required",
+            //         Toast.LENGTH_SHORT).show();
             Log.e("onFailureProfileShared: " , String.valueOf(trueError.getErrorType()));
             TruecallerPlugin.this.sendResponse("error", String.valueOf(trueError.getErrorType()));
         }
@@ -87,12 +86,9 @@ public class TruecallerPlugin extends CordovaPlugin {
             return true;
         }
         if (action.equals("truecallerInit")) {
-
             this.callbackContext = callbackContext;
-//            this.cordova.setActivityResultCallback(this);
-            this.sendResponse("success", "calling");
+            this.cordova.setActivityResultCallback(this);
             JSONObject options = args.getJSONObject(0);
-            TruecallerPlugin.this.sendResponse("success", "created options");
             this.initTruecaller(options);
             return true;
         }
@@ -105,13 +101,12 @@ public class TruecallerPlugin extends CordovaPlugin {
 
     private void initTruecaller(JSONObject options) {
             this.createTruescope(options);
-            this.sendResponse("success", "in init truecaller");
             try {
-                if(TruecallerSDK.getInstance().isUsable()){
-                    TruecallerSDK.getInstance().getUserProfile((FragmentActivity) this.cordova.getActivity());
-                }else{
-                    this.sendResponse("error", "Truecaller is not available on device");
-                }
+               if(TruecallerSDK.getInstance().isUsable()){
+                   TruecallerSDK.getInstance().getUserProfile((FragmentActivity) this.cordova.getActivity());
+               }else{
+                   this.sendResponse("error", "Truecaller is not available on device");
+               }
             }catch(Exception e){
                 this.sendResponse("error", "User not logged in");
             }
@@ -134,7 +129,6 @@ public class TruecallerPlugin extends CordovaPlugin {
     }
 
     private void createTruescope(JSONObject options) {
-        this.sendResponse("success", "inside createTruescope");
         try {
             if (TruecallerSDK.getInstance().isUsable()) return ;
         }catch (Exception ignored){
@@ -142,7 +136,6 @@ public class TruecallerPlugin extends CordovaPlugin {
         }
         Context context = this.cordova.getContext();
         try {
-            this.sendResponse("success", "creating scope");
             TruecallerSdkScope truescope = new TruecallerSdkScope.Builder(context, new sdkCallback())
                     .consentMode(options.getInt("consentMode"))
                     .buttonColor(Color.parseColor(options.getString("buttonColor")))
@@ -200,22 +193,12 @@ public class TruecallerPlugin extends CordovaPlugin {
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data){
-        Log.i("app", "in activity");
-        super.onActivityResult(requestCode,resultCode,data);
-        TruecallerSDK.getInstance().onActivityResultObtained((FragmentActivity) this.cordova.getActivity(),requestCode,resultCode,data);
-    }
-
-    @RequiresApi(api = Build.VERSION_CODES.M)
-    @Override
-    public void onRequestPermissionResult(final int requestCode, @NonNull final String[] permissions,
-                                          @NonNull final int[] grantResults) throws JSONException {
-        super.onRequestPermissionResult(requestCode, permissions, grantResults);
-        this.cordova.getActivity().onRequestPermissionsResult(requestCode, permissions, grantResults);
+        super.onActivityResult(requestCode, resultCode, data);
+        TruecallerSDK.getInstance().onActivityResultObtained((FragmentActivity) this.cordova.getActivity(), resultCode, data);
     }
 
     @Override
     public void onDestroy(){
-        // Log.i("destroying", "destroying");
         TruecallerSDK.clear();
     }
 }
