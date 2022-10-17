@@ -28,12 +28,9 @@ You can get the fingerprint/SHA1 from the command output
 
 ## Installation
 
+For installation use the original repo or keep a local copy of this repo and install
 
-    cordova plugin add cordova-plugin-truecaller --variable PARTNER_KEY='<Your truecaller partnerkey>'
-
-Alternatively, you can also install from git url
-
-    cordova plugin add https://github.com/Deepaksai1919/cordova-truecaller.git --variable PARTNER_KEY='<Your truecaller partnerkey>'
+    cordova plugin add <path>/cordova-plugin-truecaller --variable PARTNER_KEY='<Your truecaller partnerkey>'
 
 
 ---
