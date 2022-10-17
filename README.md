@@ -1,6 +1,6 @@
 ---
 title: Truecaller Authentication
-description: Authenticate users with Truecaller.
+description: Authenticate users with Truecaller. 
 ---
 
 # cordova-plugin-truecaller
@@ -19,36 +19,34 @@ On Windows
     keytool -list -v -keystore "c:\users\your_user_name\.android\debug.keystore" -alias androiddebugkey -storepass android -keypass android 
 
 You can get the fingerprint/SHA1 from the command output
-## Generate partnerkey
-*   Visit https://developer.truecaller.com/, create an account and login.
-*   Navigate to your dashboard and add application.
-*   Add your app name, package name and your fingerprint to add the application.
-* Copy the generated App Key, which is the partner key.
 
+## Generate partnerkey
+
+* Visit <https://developer.truecaller.com/>, create an account and login.
+- Navigate to your dashboard and add application.
+- Add your app name, package name and your fingerprint to add the application.
+- Copy the generated App Key, which is the partner key.
 
 ## Installation
 
+- For installation use the original repo or keep a local copy of this repo and install
 
-    cordova plugin add cordova-plugin-truecaller --variable PARTNER_KEY='<Your truecaller partnerkey>'
-
-Alternatively, you can also install from git url
-
-    cordova plugin add https://github.com/Deepaksai1919/cordova-truecaller.git --variable PARTNER_KEY='<Your truecaller partnerkey>'
-
+    cordova plugin add <path>/cordova-plugin-truecaller --variable PARTNER_KEY='<Your truecaller partnerkey>'
 
 ---
-
-<a name="module_camera"></a>
 
 ## truecaller
 
 ### truecaller.check(successCallback, errorCallback)
+
 Can be used to find if the user has truecaller application installed on their device.
 
 ### truecaller.verify(options, successCallback, errorCallback)
+
 Displays the truecaller dialog to authenticate the user.
 
-**Example**  
+__Example__  
+
 ```js
 var options = {
   consentMode: 'Bottomsheet',
@@ -79,12 +77,13 @@ cordova.plugins.truecaller.check(
     }
   );
 ```
+
 <a name="module_camera.cleanup"></a>
 
 ### options.consentMode : <code>string</code>
-**Kind**: consentMode property of <code>[Options](#)</code>
-**Default**: Bottomsheet
-**Alowed Values**
+__Kind__: consentMode property of <code>[Options](#)</code>
+__Default__: Bottomsheet
+__Alowed Values__
 
 | Value | Description |
 | --- | --- |
@@ -93,18 +92,18 @@ cordova.plugins.truecaller.check(
 | Popup | Displays a popup |
 
 ### options.buttonColor : <code>hex color code</code>
-**Kind**: buttonColor property of <code>[Options](#)</code>
-**Default**: #2979FF
+__Kind__: buttonColor property of <code>[Options](#)</code>
+__Default__: #2979FF
 
 ### options.buttonTextColor : <code>hex color code</code>
-**Kind**: buttonTextColor property of <code>[Options](#)</code>
-**Default**: #FFFFFF
+__Kind__: buttonTextColor property of <code>[Options](#)</code>
+__Default__: #FFFFFF
 
 ### options.loginTextPrefix : <code>string</code>
-**Kind**: loginTextPrefix property of <code>[Options](#)</code>
-**Default**: To continue
-**Description**: Will display the same value.
-**Alowed Values**
+__Kind__: loginTextPrefix property of <code>[Options](#)</code>
+__Default__: To continue
+__Description__: Will display the same value.
+__Alowed Values__
 
 | Value |
 | --- |
@@ -112,8 +111,8 @@ cordova.plugins.truecaller.check(
 | To continue |
 | To complete your order |
 | To checkout |
-| To proceed with your booking | 
-| To continue with your booking | 
+| To proceed with your booking |
+| To continue with your booking |
 | To get details |
 | To view more |
 | To continue reading |
@@ -123,10 +122,10 @@ cordova.plugins.truecaller.check(
 | To subscribe and get updates |
 
 ### options.loginTextSuffix : <code>string</code>
-**Kind**: loginTextSuffix property of <code>[Options](#)</code>
-**Default**: To continue
-**Description**: Will display the same value.
-**Alowed Values**
+__Kind__: loginTextSuffix property of <code>[Options](#)</code>
+__Default__: To continue
+__Description__: Will display the same value.
+__Alowed Values__
 
 | Value |
 | --- |
@@ -138,10 +137,10 @@ cordova.plugins.truecaller.check(
 | Please sign in |
 
 ### options.ctaTextPrefix : <code>string</code>
-**Kind**: ctaTextPrefix property of <code>[Options](#)</code>
-**Default**: Proceed with
-**Description**: Will display the same value.
-**Alowed Values**
+__Kind__: ctaTextPrefix property of <code>[Options](#)</code>
+__Default__: Proceed with
+__Description__: Will display the same value.
+__Alowed Values__
 
 | Value |
 | --- |
@@ -149,24 +148,22 @@ cordova.plugins.truecaller.check(
 | Continue with |
 | Proceed with |
 
-
 ### options.buttonShape : <code>string</code>
-**Kind**: buttonShape property of <code>[Options](#)</code>
-**Default**: Rounded
-**Description**: The shape of button.
-**Alowed Values**
+__Kind__: buttonShape property of <code>[Options](#)</code>
+__Default__: Rounded
+__Description__: The shape of button.
+__Alowed Values__
 
 | Value |
 | --- |
 | Rectangle |
 | Rounded |
 
-
 ### options.footerType : <code>string</code>
-**Kind**: footerType property of <code>[Options](#)</code>
-**Default**: Later
-**Description**: Will display the same value in footer.
-**Alowed Values**
+__Kind__: footerType property of <code>[Options](#)</code>
+__Default__: Later
+__Description__: Will display the same value in footer.
+__Alowed Values__
 
 | Value |
 | --- |
@@ -174,12 +171,11 @@ cordova.plugins.truecaller.check(
 | Manually |
 | Another method |
 
-
 ### options.consentTitle : <code>string</code>
-**Kind**: consentTitle property of <code>[Options](#)</code>
-**Default**: Verify
-**Description**: Will display the same value.
-**Alowed Values**
+__Kind__: consentTitle property of <code>[Options](#)</code>
+__Default__: Verify
+__Description__: Will display the same value.
+__Alowed Values__
 
 | Value |
 | --- |
@@ -191,9 +187,9 @@ cordova.plugins.truecaller.check(
 | Get started |
 
 ### options.sdkOptions : <code>string</code>
-**Kind**: sdkOptions property of <code>[Options](#)</code>
-**Default**: With otp
-**Alowed Values**
+__Kind__: sdkOptions property of <code>[Options](#)</code>
+__Default__: With otp
+__Alowed Values__
 
 | Value |
 | --- |
@@ -201,9 +197,11 @@ cordova.plugins.truecaller.check(
 | Without otp |
 
 ### truecaller.clearSdk()
+
 Clears the trueScope.
 
-**Example**  
+__Example__  
+
 ```js
 cordova.plugins.truecaller.clearSdk()
 ```
